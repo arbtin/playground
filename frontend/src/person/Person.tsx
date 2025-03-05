@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import {Button} from "@/components/ui/button.tsx";
 
 interface Category {
     id: number; // Assuming id can be either a number or string, adjust as needed
@@ -89,7 +90,7 @@ const PersonForm: React.FC = () => {
             {error && <div className="text-red-500 text-sm">{error}</div>} {/* Show error message if any */}
 
             <div>
-                <button type="submit" className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md">Submit</button>
+                <Button type="submit" className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md">Submit</Button>
             </div>
         </form>
     );
