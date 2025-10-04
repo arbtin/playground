@@ -1,4 +1,4 @@
-package swf.army.mil.playground.config;
+package com.example.playground.config;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

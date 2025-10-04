@@ -1,4 +1,4 @@
-package swf.army.mil.playground.category;
+package com.example.playground.category;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

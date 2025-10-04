@@ -1,4 +1,4 @@
-package swf.army.mil.playground.person;
+package com.example.playground.person;
 
 import org.springframework.web.bind.annotation.*;
 

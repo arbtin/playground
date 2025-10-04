@@ -1,7 +1,7 @@
-package swf.army.mil.playground.category;
+package com.example.playground.category;
 
 import jakarta.persistence.*;
-import swf.army.mil.playground.person.Person;
+import com.example.playground.person.Person;
 
 import java.util.List;
 

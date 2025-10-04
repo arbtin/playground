@@ -1,7 +1,7 @@
-package swf.army.mil.playground.person;
+package com.example.playground.person;
 
 import jakarta.persistence.*;
-import swf.army.mil.playground.category.Category;
+import com.example.playground.category.Category;
 
 @Entity
 @Table(name = "person")

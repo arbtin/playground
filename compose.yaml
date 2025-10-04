@@ -3,12 +3,17 @@ services:
     container_name: playground
     image: postgres # use latest official postgres version
     restart: always
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: playground_dev
-      POSTGRES_PASSWORD: playground_dev12
+      POSTGRES_PASSWORD: playgrounda_dev12
       POSTGRES_DB: playground
       POSTGRES_HOST_AUTH_METHOD: password
     ports:
-      - "5437:5432"
+      - "5436:5432"
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+
+volumes:
+  local-data:
+  postgresql_data:
+    driver: local

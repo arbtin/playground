@@ -1,4 +1,4 @@
-package swf.army.mil.playground.config;
+package com.example.playground.config;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;

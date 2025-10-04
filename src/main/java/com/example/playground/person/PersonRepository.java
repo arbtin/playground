@@ -1,8 +1,10 @@
-package swf.army.mil.playground.category;
+package com.example.playground.person;
+
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Long> {
+public interface PersonRepository extends JpaRepository<Person, Long> {
 }
+
