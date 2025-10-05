@@ -1,9 +1,6 @@
 package com.example.playground.category;
 
 import jakarta.persistence.*;
-import com.example.playground.person.Person;
-
-import java.util.List;
 
 @Entity
 public class Category {
@@ -12,8 +9,15 @@ public class Category {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private List<Person> people;
+//    @OneToMany(mappedBy = "category")
+//    private List<Person> people;
+
+    public Category() {}
+
+    public Category(String name) {
+        this.name = name;
+  //      this.people = people;
+    }
 
     // Getters and setters
     public Long getId() {
@@ -22,5 +26,9 @@ public class Category {
 
     public String getName() {
         return name;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

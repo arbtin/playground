@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       POSTGRES_USER: playground_dev
-      POSTGRES_PASSWORD: playgrounda_dev12
+      POSTGRES_PASSWORD: playground_dev12
       POSTGRES_DB: playground
       POSTGRES_HOST_AUTH_METHOD: password
     ports:
