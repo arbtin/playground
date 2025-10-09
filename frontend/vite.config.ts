@@ -13,7 +13,7 @@ export default defineConfig({
       clientPort: 3000,
     },
     proxy: {
-      '/v1/api': {
+      '/api': {
         target: 'http://localhost:8080',
         changeOrigin: true,
       },
@@ -29,8 +29,9 @@ export default defineConfig({
     },
   },
   test: {
-    globals: true,
-    setupFiles: './src/setupTests.ts',
-    environment: 'jsdom',
+      globals: true, // Allows using `describe`, `it`, `expect` without imports
+      environment: 'jsdom', // Simulates a browser environment
+      setupFiles: './src/setupTests.ts', // File for test setup (see below)
+      css: true, // Optional: Include CSS in tests if needed
   }
 })

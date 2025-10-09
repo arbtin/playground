@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Form from './Person';
+import Form from '../Person.tsx';
 import { vi } from 'vitest';
+import axios from "axios";
 
 vi.mock('axios', () => ({
     get: vi.fn(),

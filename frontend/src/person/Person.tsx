@@ -90,7 +90,7 @@ const PersonForm: React.FC = () => {
             {error && <div className="text-red-500 text-sm">{error}</div>} {/* Show error message if any */}
 
             <div>
-                <Button type="submit" className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md">Submit</Button>
+
             </div>
         </form>
     );
