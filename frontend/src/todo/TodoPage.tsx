@@ -27,7 +27,7 @@ export const TodoPage = () => {
         if (!todo.id) return;
 
         try {
-            const updatedTodo = await editTodo(todo.id, todo.text);
+            const updatedTodo = await editTodo(todo.id, todo.text, todo.status);
             setTodos((currentItems) =>
                 currentItems.map((item) =>
                     item.id === todo.id ? updatedTodo : item

@@ -124,7 +124,8 @@ public class TodoControllerTest {
                         .content(objectMapper.writeValueAsString(putTodo)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(testId))
-                .andExpect(jsonPath("$.text").value("correct task"));
+                .andExpect(jsonPath("$.text").value("correct task"))
+                .andExpect(jsonPath("$.status").value("active"));
 
         Mockito.verify(todoService).editTodo(idCaptor.capture(), todoCaptor.capture());
 

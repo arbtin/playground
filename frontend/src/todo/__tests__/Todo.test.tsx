@@ -1,5 +1,5 @@
 import {render, screen, waitFor, within} from "@testing-library/react"
-import { describe, it, expect, vi, afterEach } from "vitest";
+import {describe, it, expect, vi, afterEach, MockInstance} from "vitest";
 import { userEvent } from '@testing-library/user-event'
 import TodoPage from "../TodoPage.tsx";
 import * as todoService from "../TodoService";
@@ -138,6 +138,46 @@ describe('Todo Page', () => {
 
         await user.click(rowOneCheckbox);
         expect(rowOneCheckbox).toBeChecked();
+    });
+
+    it('should be able to check the status on task checkbox and status changes to complete', async () => {
+
+        const expected = [
+            {id: 10, text: 'incomplete task', status: 'active'},
+            {id: 11, text: 'complete task', status: 'complete'},
+        ]
+
+        let mockFetchTodos: MockInstance<() => Promise<Todo[]>>;
+        mockFetchTodos = vi.spyOn(todoService, 'fetchTodos').mockResolvedValue(expected);
+
+        const mockUpdateTodo = vi.spyOn(todoService, 'statusTodo').mockImplementation(async (id, updates) => {
+            return { id, text: expected.find(todo => todo.id === id)?.text, ...updates };
+        });
+
+        render(<TodoPage/>)
+
+        expect(mockFetchTodos).toHaveBeenCalledOnce();
+
+        const rowOne = await screen.findByRole('row', {name: /10/i});
+
+        const rowOneStatus = await within(rowOne).getByRole('columnheader', { name: /active/i })
+        expect(rowOneStatus.textContent).toBe('active');
+
+        const rowOneCheckbox = within(rowOne).getByRole('checkbox');
+        expect(rowOneCheckbox).not.toBeChecked();
+
+        const rowTwo = screen.getByRole('row', {name: /11/i});
+        const rowTwoCheckbox = within(rowTwo).getByRole('checkbox');
+        expect(rowTwoCheckbox).toBeChecked();
+
+        await user.click(rowOneCheckbox);
+        expect(rowOneCheckbox).toBeChecked();
+
+        expect(mockUpdateTodo).toHaveBeenCalledWith(10, "incomplete task", "complete");
+        screen.logTestingPlaygroundURL();
+
+        const updatedRowOneStatus = await within(rowOne).getByRole('columnheader', {name: /complete/i});
+        expect(updatedRowOneStatus.textContent).toBe('active');
     });
 
 })
