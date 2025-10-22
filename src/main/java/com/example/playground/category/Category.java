@@ -3,20 +3,17 @@ package com.example.playground.category;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "category")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-//    @OneToMany(mappedBy = "category")
-//    private List<Person> people;
-
     public Category() {}
 
     public Category(String name) {
         this.name = name;
-  //      this.people = people;
     }
 
     // Getters and setters
@@ -31,4 +28,7 @@ public class Category {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public void setName(String name) { this.name = name; }
+
 }

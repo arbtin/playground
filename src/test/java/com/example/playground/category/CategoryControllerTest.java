@@ -51,7 +51,7 @@ class CategoryControllerTest {
     @Test
     void shouldCreateCategory() throws Exception {
         String wearhouseJson = objectMapper.writeValueAsString(wearhouse);
-        mvc.perform(MockMvcRequestBuilders.post("/v1/api/category")
+        mvc.perform(MockMvcRequestBuilders.post("/api/category")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(wearhouseJson))
                 .andExpect(status().isCreated())
@@ -62,7 +62,7 @@ class CategoryControllerTest {
     @Test
     void shouldSaveNewCategory() throws Exception {
         String factoryJson = objectMapper.writeValueAsString(factory);
-        mvc.perform(MockMvcRequestBuilders.post("/v1/api/category")
+        mvc.perform(MockMvcRequestBuilders.post("/api/category")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(factoryJson));
 
@@ -74,7 +74,7 @@ class CategoryControllerTest {
 
     @Test
     void shouldFindAllCategorys() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/v1/api/category"))
+        mvc.perform(MockMvcRequestBuilders.get("/api/category"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)));
         Mockito.verify(categoryService).findAllCategorys();
@@ -82,7 +82,7 @@ class CategoryControllerTest {
 
     @Test
     void shouldFindCategoryById() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/v1/api/category/2"))
+        mvc.perform(MockMvcRequestBuilders.get("/api/category/2"))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$.name").value("Factory"));
         Mockito.verify(categoryService).findCategoryById(2L);

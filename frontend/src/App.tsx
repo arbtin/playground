@@ -3,7 +3,7 @@ import './App.css'
 import HomePage from './HomePage';
 import OverviewPage from './OverviewPage';
 import {TodoPage} from "./todo/TodoPage.tsx";
-import Person from './person/Person.tsx';
+import PersonPage from './person/PersonPage.tsx';
 
 function App() {
 
@@ -27,7 +27,7 @@ function App() {
                                            className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">What's in this App</a>
                                         <a href="/todo"
                                            className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Your To Do List</a>
-                                        <a href="/person" className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Person</a>
+                                        <a href="/person" className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Persons</a>
                                     </div>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@ function App() {
                     <Route index element={<HomePage/>}/>
                     <Route path="overview" element={<OverviewPage/>}/>
                     <Route path="todo" element={<TodoPage/>}/>
-                    <Route path="/person" element={<Person />} />
+                    <Route path="person" element={<PersonPage />} />
                 </Routes>
             </BrowserRouter>
         </div>

@@ -33,7 +33,7 @@ public class CategoryControllerIntegrationTest {
     @Test
     void shouldCreateCategory() throws Exception {
         String categoryJson = mapper.writeValueAsString(company);
-        mvc.perform(post("/v1/api/category")
+        mvc.perform(post("/api/category")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(categoryJson))
                 .andExpect(status().is(201))
@@ -45,7 +45,7 @@ public class CategoryControllerIntegrationTest {
         categoryRepository.save(company);
         //categoryRepository.save();
 
-        mvc.perform(get("/v1/api/category"))
+        mvc.perform(get("/api/category"))
                 .andDo(print())
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$[0].name").value("Company"));
@@ -55,7 +55,7 @@ public class CategoryControllerIntegrationTest {
     void shouldGetPilotById() throws Exception {
         Category savedCompany = categoryRepository.save(company);
 
-        mvc.perform(MockMvcRequestBuilders.get("/v1/api/category/" + savedCompany.getId()))
+        mvc.perform(MockMvcRequestBuilders.get("/api/category/" + savedCompany.getId()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Company"));
 

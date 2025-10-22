@@ -1,5 +1,6 @@
 package com.example.playground.person;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,12 +16,12 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<Person> createPerson(@RequestBody Person person) {
-        return ResponseEntity.ok( personService.savePerson(person));
+        return new ResponseEntity<>(personService.savePerson(person),  HttpStatus.CREATED);
     }
 
-    @GetMapping()
+    @GetMapping
     public List<Person> getAllPerson() {
         return personService.findAllPersons();
     }
@@ -37,7 +38,6 @@ public class PersonController {
 //    @GetMapping("/{id}")
 //    public Person getPersonById(@PathVariable Long id) { return personService.findPersonById(id);
 //    }
-
 
     @PutMapping("/{id}")
     public Person updatePersonById(@PathVariable Long id, @RequestBody Person person) {

@@ -71,7 +71,7 @@ class PersonControllerTest {
         Mockito.when(personService.savePerson(any(Person.class))).thenReturn(nancy);
         String nancyJson = objectMapper.writeValueAsString(nancy);
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/v1/api/person")
+                        .post("/api/person")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(nancyJson))
                 .andExpect(status().is2xxSuccessful())
@@ -84,7 +84,7 @@ class PersonControllerTest {
     @Test
     void shouldFindAllPersons() throws Exception {
         Mockito.when(personService.findAllPersons()).thenReturn(staff);
-        mockMvc.perform(MockMvcRequestBuilders.get("/v1/api/person"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/person"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)));
         Mockito.verify(personService).findAllPersons();
@@ -93,7 +93,7 @@ class PersonControllerTest {
     @Test
     void shouldFindPersonById() throws Exception {
         Mockito.when(personService.findPersonById(Mockito.anyLong())).thenReturn(bob);
-        mockMvc.perform(MockMvcRequestBuilders.get("/v1/api/person/2"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/person/2"))
                 .andExpect(status().isOk());
 //                .andExpect(jsonPath("$.name").value("Factory"));
         Mockito.verify(personService).findPersonById(2L);
@@ -107,7 +107,7 @@ class PersonControllerTest {
         updatedPerson.setCategory(newCategory);
         String updateContent = objectMapper.writeValueAsString(updatedPerson);
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/v1/api/person/1")
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/person/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(updateContent))
                 .andExpect(status().isOk())
@@ -124,7 +124,7 @@ class PersonControllerTest {
         Person updatedPerson = new Person();
         updatedPerson.setCategory(newCategory);
 
-        mockMvc.perform(MockMvcRequestBuilders.patch("/v1/api/person/2")
+        mockMvc.perform(MockMvcRequestBuilders.patch("/api/person/2")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"name\":\"Mary\"}"))
                 .andExpect(status().isOk())
@@ -135,7 +135,7 @@ class PersonControllerTest {
     void shouldDeletePerson() throws Exception {
         doNothing().when(personService).deletePerson(anyLong());
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/v1/api/person/3"))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/person/3"))
                 .andExpect(status().isNoContent());
     }
 }
